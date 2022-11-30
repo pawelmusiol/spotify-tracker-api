@@ -14,7 +14,3 @@ app.get('/', (req, res) => {
 app.use(bodyParser.json())
 app.use('/', User)
 app.use('/song', Song)
-
-app.listen(port, () => {
-    console.log(`Server is listening on ${port}`);
-});
