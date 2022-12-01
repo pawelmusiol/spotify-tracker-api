@@ -10,7 +10,7 @@ router.get('/login', (req, res) => {
     const params = new URLSearchParams();
     params.append('client_id', CLIENT_ID)
     params.append('response_type', 'code')
-    params.append('redirect_uri', 'http://192.168.0.168:9000/callback')
+    params.append('redirect_uri', 'https://spotify-tracker-api.onrender.com/callback')
     params.append('state', 'dupa')
     params.append('scope', 'user-read-private user-read-playback-state user-modify-playback-state')
     params.append('show_dialog', 'true')
@@ -30,7 +30,7 @@ router.get('/callback', async (req, res) => {
         if (code !== null) {
             let response = await axios.post('https://accounts.spotify.com/api/token', {
                 code: code,
-                redirect_uri: 'http://192.168.0.168:9000/callback',
+                redirect_uri: 'https://spotify-tracker-api.onrender.com/callback',
                 grant_type: 'authorization_code'
             }, {
                 headers: {
@@ -43,7 +43,7 @@ router.get('/callback', async (req, res) => {
                 if(typeof key[1] === 'string') params.append(key[0],key[1])
                 else if (typeof key[1] === 'number') params.append(key[0],String(key[1]))
             })
-            res.redirect(`http://192.168.0.168:9000/callback?${params.toString()}`)
+            res.redirect(`https://spotify-tracker-api.onrender.com/callback?${params.toString()}`)
         }
     } else {
         res.send(req.query)
