@@ -9,5 +9,9 @@ router.post('/',(req, res) => {
 router.get('/', (req, res) => {
     return getSong(req, res)
 })
+router.put('/', (req, res) => {
+    console.log('dupa')
+    res.send('dupa')
+})
 
 export default router

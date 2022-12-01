@@ -1,6 +1,17 @@
 import mongoose, { Schema, Types } from "mongoose";
 
-const schema = new Schema({
+export interface ISong{
+    name: string,
+    spotifyId: string,
+    userId: string,
+    location:{
+        time: Date,
+        longitude: number,
+        latitude: number,
+    }
+}
+
+const schema = new Schema<ISong>({
     name: {
         type: String,
         required: true,
