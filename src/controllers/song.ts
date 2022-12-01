@@ -25,10 +25,12 @@ export const getSong = async (req: Request, res: Response) => {
     let songs: ISong[] = await Song.aggregate([
         { $match: { userId: userId, 'location.time': { $gte: new Date('2022-11-29').toISOString() } } },
     ])
+    console.log(songs)
     let songsGroups: ISongGroup[] = [{ name: '', location: [{latitude: 0, longitude: 0, time: new Date()}]}]
     if (songs.length > 0) {
         songsGroups = createGroups(songs)
     }
+    console.log(songsGroups)
     res.status(200).send(songsGroups)
 }
 
